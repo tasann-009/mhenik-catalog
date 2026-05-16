@@ -41,18 +41,72 @@
                     <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Categories</h2>
                     <span id="globalCount" class="text-[11px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-bold">Loading...</span>
                 </div>
-                <nav class="space-y-1" id="sidebarNav">
-                    <a href="#page1" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium bg-red-50 text-red-700 font-semibold"><i class="fa-solid fa-mirror w-5"></i> Side Mirror Parts</a>
-                    <a href="#page2" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-car-rear w-5"></i> Lights & Ballasts</a>
-                    <a href="#page3" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-mask w-5"></i> Fog & Bumpers</a>
-                    <a href="#page4" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-screwdriver-wrench w-5"></i> Front Bumper & Panels</a>
-                    <a href="#page5" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-border-all w-5"></i> Body Trim / Mouldings</a>
-                    <a href="#page6" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-bolt w-5"></i> Shocks & Handles</a>
-                    <a href="#page7" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-gears w-5"></i> Accessories & Sun Visors</a>
-                    <a href="#page8" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-sliders w-5"></i> Switch Panels & Intake</a>
-                    <a href="#page9" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-lightbulb w-5"></i> Engine & Underhood</a>
-                    <a href="#page10" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-circle-info w-5"></i> Electrical & Miscellaneous</a>
-                </nav>
+               <nav class="space-y-4 text-left" id="sidebarNav">
+    <!-- SECTION 1: LIGHTING & ELECTRICAL -->
+    <div>
+        <div class="px-3 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-solid fa-bolt text-red-500 mr-1"></i> Lighting & Electrical</div>
+        <div class="mt-1 space-y-0.5 pl-1">
+            <a href="#page1" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-semibold bg-red-50 text-red-700">
+                <i class="fa-solid fa-mirror w-4 text-center"></i> <span>Headlight Chrome</span>
+            </a>
+            <a href="#page2" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+                <i class="fa-solid fa-car-rear w-4 text-center"></i> <span>Lights & Ballasts</span>
+            </a>
+            <a href="#page8" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+                <i class="fa-solid fa-sliders w-4 text-center"></i> <span>Switches & Covers</span>
+            </a>
+            <a href="#page10" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+                <i class="fa-solid fa-circle-info w-4 text-center"></i> <span>Electrical & Misc</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- SECTION 2: BODY PARTS & EXTERIOR -->
+    <div>
+        <div class="px-3 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-solid fa-mask text-gray-400 mr-1"></i> Body Parts & Exterior</div>
+        <div class="mt-1 space-y-0.5 pl-1">
+            <a href="#page3" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+                <i class="fa-solid fa-mask w-4 text-center"></i> <span>Fog & Bumpers</span>
+            </a>
+            <a href="#page4" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+                <i class="fa-solid fa-screwdriver-wrench w-4 text-center"></i> <span>Front Bumper & Panels</span>
+            </a>
+            <a href="#page5" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+                <i class="fa-solid fa-border-all w-4 text-center"></i> <span>Body Trim & Mouldings</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- SECTION 3: MIRRORS & HANDLES -->
+    <div>
+        <div class="px-3 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-solid fa-car w-4 text-center mr-1"></i> Mirrors & Handles</div>
+        <div class="mt-1 space-y-0.5 pl-1">
+            <a href="#page6" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+                <i class="fa-solid fa-bolt w-4 text-center"></i> <span>Shocks, Handles & Locks</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- SECTION 4: ENGINE & MECHANICAL -->
+    <div>
+        <div class="px-3 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-solid fa-gears text-gray-400 mr-1"></i> Engine & Mechanical</div>
+        <div class="mt-1 space-y-0.5 pl-1">
+            <a href="#page9" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+                <i class="fa-solid fa-lightbulb w-4 text-center"></i> <span>Engine & Underhood</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- SECTION 5: INTERIOR & ACCESSORIES -->
+    <div>
+        <div class="px-3 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wider"><i class="fa-solid fa-list-check text-gray-400 mr-1"></i> Interior & Accessories</div>
+        <div class="mt-1 space-y-0.5 pl-1">
+            <a href="#page7" class="flex items-center space-x-2 px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50">
+                <i class="fa-solid fa-gears w-4 text-center"></i> <span>Accessories & Sun Visors</span>
+            </a>
+        </div>
+    </div>
+</nav>
 
                 <div class="mt-6 pt-4 border-t border-gray-100">
                     <h3 class="text-xs font-bold text-gray-700 uppercase mb-2"><i class="fa-solid fa-list-check text-red-600 mr-1"></i> Inquiry Cart</h3>
