@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mhenik Traders Limited | Full Live Inventory Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html { scroll-behavior: smooth; }
+        .product-card:hover { transform: translateY(-4px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <header class="bg-gradient-to-r from-red-700 via-red-600 to-slate-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white text-red-600 p-2 rounded-full font-bold text-xl tracking-wider shadow-inner">MT</div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">MHENIK TRADERS LIMITED</h1>
+                    <p class="text-xs text-red-200">Premium Auto Spare Parts Catalog Dashboard</p>
+                </div>
+            </div>
+            
+            <div class="w-full sm:w-80 mt-2 sm:mt-0 relative">
+                <input type="text" id="catalogSearch" onkeyup="searchCatalog()" placeholder="Search from your entire inventory..." 
+                    class="w-full pl-10 pr-4 py-2 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-400 text-sm">
+                <div class="absolute left-3 top-2.5 text-gray-400">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row gap-6">
+        
+        <aside class="w-full md:w-64 shrink-0">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sticky top-20 max-h-[80vh] overflow-y-auto">
+                <div class="flex items-center justify-between mb-3 px-2">
+                    <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">Categories</h2>
+                    <span id="globalCount" class="text-[11px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-bold">Loading...</span>
+                </div>
+                <nav class="space-y-1" id="sidebarNav">
+                    <a href="#page1" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium bg-red-50 text-red-700 font-semibold"><i class="fa-solid fa-mirror w-5"></i> Side Mirror Parts</a>
+                    <a href="#page2" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-car-rear w-5"></i> Lights & Ballasts</a>
+                    <a href="#page3" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-mask w-5"></i> Fog & Bumpers</a>
+                    <a href="#page4" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-screwdriver-wrench w-5"></i> Front Bumper & Panels</a>
+                    <a href="#page5" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-border-all w-5"></i> Body Trim / Mouldings</a>
+                    <a href="#page6" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-bolt w-5"></i> Shocks & Handles</a>
+                    <a href="#page7" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-gears w-5"></i> Accessories & Sun Visors</a>
+                    <a href="#page8" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-sliders w-5"></i> Switch Panels & Intake</a>
+                    <a href="#page9" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-lightbulb w-5"></i> Engine & Underhood</a>
+                    <a href="#page10" class="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"><i class="fa-solid fa-circle-info w-5"></i> Electrical & Miscellaneous</a>
+                </nav>
+
+                <div class="mt-6 pt-4 border-t border-gray-100">
+                    <h3 class="text-xs font-bold text-gray-700 uppercase mb-2"><i class="fa-solid fa-list-check text-red-600 mr-1"></i> Inquiry Cart</h3>
+                    <div id="cartStatus" class="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg border border-gray-200">
+                        No items selected. Click parts to build a quotation list.
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 space-y-10" id="catalogContent">
+
+            <section id="page1" class="scroll-mt-20">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-2 mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center"><span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded mr-2">P1</span> SIDEMIRROR PARTS</h2>
+                    <span class="text-xs text-gray-400 count-badge"></span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 card-container" data-category="sidemirror"></div>
+            </section>
+
+            <section id="page2" class="scroll-mt-20">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-2 mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center"><span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded mr-2">P2</span> LIGHTS & BALLASTS</h2>
+                    <span class="text-xs text-gray-400 count-badge"></span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 card-container" data-category="lights"></div>
+            </section>
+
+            <section id="page3" class="scroll-mt-20">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-2 mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center"><span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded mr-2">P3</span> FOG & BUMPERS</h2>
+                    <span class="text-xs text-gray-400 count-badge"></span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 card-container" data-category="fog"></div>
+            </section>
+
+            <section id="page4" class="scroll-mt-20">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-2 mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center"><span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded mr-2">P4</span> FRONT BUMPER & PANELS</h2>
+                    <span class="text-xs text-gray-400 count-badge"></span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 card-container" data-category="frontbody"></div>
+            </section>
+
+            <section id="page5" class="scroll-mt-20">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-2 mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center"><span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded mr-2">P5</span> BODY TRIM / MOULDINGS</h2>
+                    <span class="text-xs text-gray-400 count-badge"></span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 card-container" data-category="bodytrim"></div>
+            </section>
+
+            <section id="page6" class="scroll-mt-20">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-2 mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center"><span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded mr-2">P6</span> SHOCKS & HANDLES</h2>
+                    <span class="text-xs text-gray-400 count-badge"></span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 card-container" data-category="shocks"></div>
+            </section>
+
+            <section id="page7" class="scroll-mt-20">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-2 mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center"><span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded mr-2">P7</span> ACCESSORIES & SUN VISORS</h2>
+                    <span class="text-xs text-gray-400 count-badge"></span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 card-container" data-category="interior"></div>
+            </section>
+
+            <section id="page8" class="scroll-mt-20">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-2 mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center"><span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded mr-2">P8</span> SWITCH PANELS & INTAKE HOUSING</h2>
+                    <span class="text-xs text-gray-400 count-badge"></span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 card-container" data-category="internaltrim"></div>
+            </section>
+
+            <section id="page9" class="scroll-mt-20">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-2 mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center"><span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded mr-2">P9</span> ENGINE & UNDERHOOD PANELS</h2>
+                    <span class="text-xs text-gray-400 count-badge"></span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 card-container" data-category="engine"></div>
+            </section>
+
+            <section id="page10" class="scroll-mt-20">
+                <div class="flex items-center justify-between border-b border-gray-200 pb-2 mb-4">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center"><span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded mr-2">P10</span> ELECTRICAL & MISCELLANEOUS</h2>
+                    <span class="text-xs text-gray-400 count-badge"></span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 card-container" data-category="misc"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="bg-slate-900 text-gray-400 text-center py-6 border-t border-slate-800 mt-12 text-sm">
+        <p>&copy; 2026 Mhenik Traders Limited. All Rights Reserved.</p>
+        <p class="text-xs text-gray-600 mt-1">Automotive Replacement Spare Parts Online Interactive Inventory Catalog</p>
+    </footer>
+
+    <script>
+        // Full raw product array dump extracted explicitly from your spreadsheet inventory data
+        const rawDatabase = [
+            "BENZ W166 R", "BENZ W166 L", "BENZ GLE C292 2018 R", "BENZ GLE C292 2018 L", "BENZ GLE C167 2021 R", 
+            "BENZ GLE C167 2021 L", "BENZ GLE C167 2024 R", "BENZ GLE C167 2024 L", "WINDBREAKER PREMIO 1998 NYOKA", 
+            "LOWER COVER AXELLA R", "LOWER COVER AXELLA L", "BENZ W176 2013&2016 R", "BENZ W176 2013&2016 L", 
+            "BENZ W176 2017&2018 R", "BENZ W176 2017&2018 L", "BENZ W177 R", "BENZ W177 L", "BENZ B W245 09&11 R", 
+            "BENZ B W245 09&11 L", "BENZ B W246 12&15 R", "BENZ B W246 12&15 L", "BENZ B W246 16&19 R", 
+            "BENZ B W246 16&19 L", "BENZ B W247 20/23 R", "BENZ B W247 20/23 L", "SWITCH COVER PREMIO 260 DARK BROWN FL", 
+            "SWITCH COVER PREMIO 260 DARK BROWN FR", "SWITCH COVER PREMIO 260 DARK BROWN RR", "SWITCH COVER PREMIO 260 DARK BROWN RL", 
+            "SWITCH COVER ALLION 260 LIGHT WOODEN FL", "SWITCH COVER ALLION 260 LIGHT WOODEN FR", "SWITCH COVER ALLION 260 LIGHT WOODEN RR", 
+            "SWITCH COVER ALLION 260 LIGHT WOODEN RL", "SWITCH COVER PREMIO 260 BLACK GLOSSY FL", "SWITCH COVER PREMIO 260 BLACK GLOSSY FR", 
+            "SWITCH COVER PREMIO 260 BLACK GLOSSY RR", "SWITCH COVER PREMIO 260 BLACK GLOSSY RL", "SWITCH COVER PREMIO 240 FL", 
+            "SWITCH COVER PREMIO 240 FR", "SWITCH COVER PREMIO 240 RR", "SWITCH COVER PREMIO 240 RL", "FENDER HARRIER 2014 R", 
+            "FENDER HARRIER 2014 L", "FENDER HARRIER 2020 R", "FENDER HARRIER 2020 L", "FENDER PRADO 150 R", "FENDER PRADO 150 L", 
+            "FENDER XTRAIL T32 R", "FENDER XTRAIL T32 L", "FENDER RAV4 2019 R", "FENDER RAV4 2019 L", "FENDER VANGUARD R", 
+            "FENDER VANGUARD L", "FENDER CX5 2013 R", "FENDER CX5 2013 L", "FENDER CX5 2018 R", "FENDER CX5 2018 L", 
+            "FENDER ATENZA 2014 R", "FENDER ATENZA 2014 L", "FENDER DEMIO DJ R", "FENDER DEMIO DJ L", "FENDER FORESTER S13 R", 
+            "FENDER FORESTER S13 L", "FENDER SUBARU XV 2014 R", "FENDER SUBARU XV 2014 L", "FENDER FIT 2014 GK3 R", 
+            "FENDER FIT 2014 GK3 L", "FENDER FIT 2020 GR1 R", "FENDER FIT 2020 GR1 L", "FENDER PASSO 2016 R", "FENDER PASSO 2016 L", 
+            "FENDER VITZ 2014 R", "FENDER VITZ 2014 L", "FENDER AXELLA 2014 R", "FENDER AXELLA 2014 L", "FENDER SIENTA 2016 R", 
+            "FENDER SIENTA 2016 L", "FENDER CHR R", "FENDER CHR L", "FENDER NOTE E12 R", "FENDER NOTE E12 L", "FENDER NOTE E13 R", 
+            "FENDER NOTE E13 L", "FENDER DUALIS R", "FENDER DUALIS L", "FENDER PROBOX 2015 R", "FENDER PROBOX 2015 L", 
+            "FENDER FIELDERS 165 R", "FENDER FIELDERS 165 L", "FENDER AD VAN R", "FENDER AD VAN L", "FENDER SIENTA 2006 R", 
+            "FENDER SIENTA 2006 L", "FENDER SHUTTLE 2015 R", "FENDER SHUTTLE 2015 L", "FENDER OUTLANDER 2014 R", "FENDER OUTLANDER 2014 L", 
+            "FENDER CROWN 210 R", "FENDER CROWN 210 L", "FENDER ATENZA 2008 R", "FENDER ATENZA 2008 L", "FENDER IMPREZA G4 2014 R", 
+            "FENDER IMPREZA G4 2014 L", "FENDER RVR 2012 R", "FENDER RVR 2012 L", "FENDER MIRAGE 2014 R", "FENDER MIRAGE 2014 L", 
+            "FENDER NX300 R", "FENDER NX300 L", "FENDER RX300 2016 R", "FENDER RX300 2016 L", "FENDER RX300 2020 R", "FENDER RX300 2020 L", 
+            "FENDER MAZDA 3 2020 R", "FENDER MAZDA 3 2020 L", "HEADLAMP HARRIER 2014 R GENUINE", "HEADLAMP HARRIER 2014 L GENUINE", 
+            "HEADLAMP HARRIER 2014 R ORDINARY", "HEADLAMP HARRIER 2014 L ORDINARY", "HEADLAMP HARRIER 2018 L XENON TYPE", 
+            "HEADLAMP HARRIER 2020 R TYPE", "HEADLAMP HARRIER 2020 L TYPE", "HEADLAMP PRADO 150 2010 R TYPE", "HEADLAMP PRADO 150 2010 L TYPE", 
+            "HEADLAMP PRADO 150 2014 R TYPE", "HEADLAMP PRADO 150 2014 L TYPE", "HEADLAMP PRADO 150 2018 R TYPE", "HEADLAMP PRADO 150 2018 L TYPE", 
+            "HEADLAMP XTRAIL T32 2014 LED R TYPE", "HEADLAMP XTRAIL T32 2014 LED L TYPE", "HEADLAMP XTRAIL T32 2014 ORDINARY R TYPE", 
+            "HEADLAMP XTRAIL T32 2014 ORDINARY L TYPE", "HEADLAMP XTRAIL T32 2018 LED R TYPE", "HEADLAMP XTRAIL T32 2018 LED L TYPE", 
+            "HEADLAMP RAV4 2019 R LED TYPE", "HEADLAMP RAV4 2019 L LED TYPE", "HEADLAMP VANGUARD 2010 R XENON TYPE", 
+            "HEADLAMP VANGUARD 2010 L XENON TYPE", "HEADLAMP CX5 2013 R TYPE", "HEADLAMP CX5 2013 L TYPE", "HEADLAMP CX5 2015 R TYPE", 
+            "HEADLAMP CX5 2015 L TYPE", "HEADLAMP CX5 2018 R TYPE", "HEADLAMP CX5 2018 L TYPE", "HEADLAMP ATENZA 2014 R LED TYPE", 
+            "HEADLAMP ATENZA 2014 L LED TYPE", "HEADLAMP ATENZA 2018 R LED TYPE", "HEADLAMP ATENZA 2018 L LED TYPE", "HEADLAMP DEMIO DJ R LED TYPE", 
+            "HEADLAMP DEMIO DJ L LED TYPE", "HEADLAMP DEMIO DJ R ORDINARY TYPE", "HEADLAMP DEMIO DJ L ORDINARY TYPE", "HEADLAMP FORESTER S13 2013 R TYPE", 
+            "HEADLAMP FORESTER S13 2013 L TYPE", "HEADLAMP FORESTER S13 2016 R TYPE", "HEADLAMP FORESTER S13 2016 L TYPE", "HEADLAMP FORESTER S14 2019 R TYPE", 
+            "HEADLAMP FORESTER S14 2019 L TYPE", "HEADLAMP SUBARU XV 2014 R TYPE", "HEADLAMP SUBARU XV 2014 L TYPE", "HEADLAMP SUBARU XV 2018 R TYPE", 
+            "HEADLAMP SUBARU XV 2018 L TYPE", "HEADLAMP IMPREZA SPORT 2017 R TYPE", "HEADLAMP IMPREZA SPORT 2017 L TYPE", "HEADLAMP FIT GK3 2014 LED R TYPE", 
+            "HEADLAMP FIT GK3 2014 LED L TYPE", "HEADLAMP FIT GK3 2014 ORDINARY R TYPE", "HEADLAMP FIT GK3 2014 ORDINARY L TYPE", 
+            "HEADLAMP FIT GR1 2020 R TYPE", "HEADLAMP FIT GR1 2020 L TYPE", "HEADLAMP PASSO 2016 R TYPE", "HEADLAMP PASSO 2016 L TYPE", 
+            "HEADLAMP VITZ 2014 KSP130 R TYPE", "HEADLAMP VITZ 2014 KSP130 L TYPE", "HEADLAMP VITZ 2017 R TYPE", "HEADLAMP VITZ 2017 L TYPE", 
+            "HEADLAMP AXELLA 2014 R LED TYPE", "HEADLAMP AXELLA 2014 L LED TYPE", "HEADLAMP SIENTA 2016 LED R TYPE", "HEADLAMP SIENTA 2016 LED L TYPE", 
+            "HEADLAMP CHR R LED TYPE", "HEADLAMP CHR L LED TYPE", "HEADLAMP CHR R ORDINARY TYPE", "HEADLAMP CHR L ORDINARY TYPE", 
+            "HEADLAMP NOTE E12 2014 DIGS R TYPE", "HEADLAMP NOTE E12 2014 DIGS L TYPE", "HEADLAMP NOTE E12 2014 ORDINARY R TYPE", 
+            "HEADLAMP NOTE E12 2014 ORDINARY L TYPE", "HEADLAMP NOTE E12 2017 LED R TYPE", "HEADLAMP NOTE E12 2017 LED L TYPE", 
+            "HEADLAMP NOTE E13 2021 R TYPE", "HEADLAMP NOTE E13 2021 L TYPE", "HEADLAMP DUALIS R TYPE", "HEADLAMP DUALIS L TYPE", 
+            "HEADLAMP PROBOX 2015 R TYPE", "HEADLAMP PROBOX 2015 L TYPE", "HEADLAMP FIELDER 165 LED R TYPE", "HEADLAMP FIELDER 165 LED L TYPE", 
+            "HEADLAMP FIELDER 165 ORDINARY R TYPE", "HEADLAMP FIELDER 165 ORDINARY L TYPE", "HEADLAMP SHUTTLE 2015 R TYPE", 
+            "HEADLAMP SHUTTLE 2015 L TYPE", "HEADLAMP OUTLANDER 2014 LED R TYPE", "HEADLAMP OUTLANDER 2014 LED L TYPE", "HEADLAMP CROWN 210 R TYPE", 
+            "HEADLAMP CROWN 210 L TYPE", "HEADLAMP ATENZA 2008 R TYPE", "HEADLAMP ATENZA 2008 L TYPE", "HEADLAMP RVR 2012 HID R TYPE", 
+            "HEADLAMP RVR 2012 HID L TYPE", "HEADLAMP MIRAGE 2014 R TYPE", "HEADLAMP MIRAGE 2014 L TYPE", "HEADLAMP MIRAGE 2020 R TYPE", 
+            "HEADLAMP MIRAGE 2020 L TYPE", "HEADLAMP AUDI Q5 2010 R TYPE", "HEADLAMP AUDI Q5 2010 L TYPE", "HEADLAMP AUDI Q5 2014 R TYPE", 
+            "HEADLAMP AUDI Q5 2014 L TYPE", "HEADLAMP NX300 R TYPE", "HEADLAMP NX300 L TYPE", "HEADLAMP RX300 2016 R TYPE", 
+            "HEADLAMP RX300 2016 L TYPE", "HEADLAMP RX300 2020 R TYPE", "HEADLAMP RX300 2020 L TYPE", "HEADLAMP MAZDA 3 2020 R TYPE", 
+            "HEADLAMP MAZDA 3 2020 L TYPE", "TAIL LAMP HARRIER 2014 OUTSIDE R TYPE", "TAIL LAMP HARRIER 2014 OUTSIDE L TYPE", 
+            "TAIL LAMP HARRIER 2014 INSIDE R TYPE", "TAIL LAMP HARRIER 2014 INSIDE L TYPE", "TAIL LAMP HARRIER 2018 OUTSIDE R TYPE", 
+            "TAIL LAMP HARRIER 2018 OUTSIDE L TYPE", "TAIL LAMP HARRIER 2018 INSIDE R TYPE", "TAIL LAMP HARRIER 2018 INSIDE L TYPE", 
+            "TAIL LAMP HARRIER 2020 OUTSIDE R TYPE", "TAIL LAMP HARRIER 2020 OUTSIDE L TYPE", "TAIL LAMP PRADO 150 2010 R TYPE", 
+            "TAIL LAMP PRADO 150 2010 L TYPE", "TAIL LAMP PRADO 150 2018 R TYPE", "TAIL LAMP PRADO 150 2018 L TYPE", "TAIL LAMP XTRAIL T32 2014 R TYPE", 
+            "TAIL LAMP XTRAIL T32 2014 L TYPE", "TAIL LAMP XTRAIL T32 2018 R TYPE", "TAIL LAMP XTRAIL T32 2018 L TYPE", "TAIL LAMP RAV4 2019 OUTSIDE R TYPE", 
+            "TAIL LAMP RAV4 2019 OUTSIDE L TYPE", "TAIL LAMP RAV4 2019 INSIDE R TYPE", "TAIL LAMP RAV4 2019 INSIDE L TYPE", "TAIL LAMP VANGUARD R TYPE", 
+            "TAIL LAMP VANGUARD L TYPE", "TAIL LAMP CX5 2013 R TYPE", "TAIL LAMP CX5 2013 L TYPE", "TAIL LAMP CX5 2015 R TYPE", 
+            "TAIL LAMP CX5 2015 L TYPE", "TAIL LAMP CX5 2018 OUTSIDE R TYPE", "TAIL LAMP CX5 2018 OUTSIDE L TYPE", "TAIL LAMP CX5 2018 INSIDE R TYPE", 
+            "TAIL LAMP CX5 2018 INSIDE L TYPE", "TAIL LAMP ATENZA 2014 OUTSIDE R TYPE", "TAIL LAMP ATENZA 2014 OUTSIDE L TYPE", 
+            "TAIL LAMP ATENZA 2014 INSIDE R TYPE", "TAIL LAMP ATENZA 2014 INSIDE L TYPE", "TAIL LAMP ATENZA 2018 OUTSIDE R TYPE", 
+            "TAIL LAMP ATENZA 2018 OUTSIDE L TYPE", "TAIL LAMP DEMIO DJ OUTSIDE R TYPE", "TAIL LAMP DEMIO DJ OUTSIDE L TYPE", 
+            "TAIL LAMP FORESTER S13 R TYPE", "TAIL LAMP FORESTER S13 L TYPE", "TAIL LAMP FORESTER S14 R TYPE", "TAIL LAMP FORESTER S14 L TYPE", 
+            "TAIL LAMP SUBARU XV 2014 OUTSIDE R TYPE", "TAIL LAMP SUBARU XV 2014 OUTSIDE L TYPE", "TAIL LAMP SUBARU XV 2014 INSIDE R TYPE", 
+            "TAIL LAMP SUBARU XV 2014 INSIDE L TYPE", "TAIL LAMP SUBARU XV 2018 OUTSIDE R TYPE", "TAIL LAMP SUBARU XV 2018 OUTSIDE L TYPE", 
+            "TAIL LAMP SUBARU XV 2018 INSIDE R TYPE", "TAIL LAMP SUBARU XV 2018 INSIDE L TYPE", "TAIL LAMP FIT GK3 R TYPE", 
+            "TAIL LAMP FIT GK3 L TYPE", "TAIL LAMP FIT GR1 OUTSIDE R TYPE", "TAIL LAMP FIT GR1 OUTSIDE L TYPE", "TAIL LAMP PASSO 2016 R TYPE", 
+            "TAIL LAMP PASSO 2016 L TYPE", "TAIL LAMP VITZ 2014 OUTSIDE R TYPE", "TAIL LAMP VITZ 2014 OUTSIDE L TYPE", "TAIL LAMP VITZ 2017 OUTSIDE R TYPE", 
+            "TAIL LAMP VITZ 2017 OUTSIDE L TYPE", "TAIL LAMP VITZ 2017 INSIDE R TYPE", "TAIL LAMP VITZ 2017 INSIDE L TYPE", "TAIL LAMP AXELLA 2014 OUTSIDE R TYPE", 
+            "TAIL LAMP AXELLA 2014 OUTSIDE L TYPE", "TAIL LAMP AXELLA 2014 INSIDE R TYPE", "TAIL LAMP AXELLA 2014 INSIDE L TYPE", "TAIL LAMP SIENTA 2016 OUTSIDE R TYPE", 
+            "TAIL LAMP SIENTA 2016 OUTSIDE L TYPE", "TAIL LAMP SIENTA 2016 INSIDE R TYPE", "TAIL LAMP SIENTA 2016 INSIDE L TYPE", "TAIL LAMP CHR OUTSIDE R TYPE", 
+            "TAIL LAMP CHR OUTSIDE L TYPE", "TAIL LAMP CHR INSIDE R TYPE", "TAIL LAMP CHR INSIDE L TYPE", "TAIL LAMP NOTE E12 2014 R TYPE", 
+            "TAIL LAMP NOTE E12 2014 L TYPE", "TAIL LAMP NOTE E12 2017 R TYPE", "TAIL LAMP NOTE E12 2017 L TYPE", "TAIL LAMP NOTE E13 OUTSIDE R TYPE", 
+            "TAIL LAMP NOTE E13 OUTSIDE L TYPE", "TAIL LAMP DUALIS R TYPE", "TAIL LAMP DUALIS L TYPE", "TAIL LAMP PROBOX 2015 R TYPE", 
+            "TAIL LAMP PROBOX 2015 L TYPE", "TAIL LAMP FIELDER 165 OUTSIDE R TYPE", "TAIL LAMP FIELDER 165 OUTSIDE L TYPE", 
+            "TAIL LAMP FIELDER 165 INSIDE R TYPE", "TAIL LAMP FIELDER 165 INSIDE L TYPE", "TAIL LAMP SHUTTLE 2015 OUTSIDE R TYPE", 
+            "TAIL LAMP SHUTTLE 2015 OUTSIDE L TYPE", "TAIL LAMP SHUTTLE 2015 INSIDE R TYPE", "TAIL LAMP SHUTTLE 2015 INSIDE L TYPE", 
+            "TAIL LAMP OUTLANDER 2014 OUTSIDE R TYPE", "TAIL LAMP OUTLANDER 2014 OUTSIDE L TYPE", "TAIL LAMP OUTLANDER 2014 INSIDE R TYPE", 
+            "TAIL LAMP OUTLANDER 2014 INSIDE L TYPE", "TAIL LAMP CROWN 210 OUTSIDE R TYPE", "TAIL LAMP CROWN 210 OUTSIDE L TYPE", 
+            "TAIL LAMP CROWN 210 INSIDE R TYPE", "TAIL LAMP CROWN 210 INSIDE L TYPE", "TAIL LAMP ATENZA 2008 OUTSIDE R TYPE", 
+            "TAIL LAMP ATENZA 2008 OUTSIDE L TYPE", "TAIL LAMP ATENZA 2008 INSIDE R TYPE", "TAIL LAMP ATENZA 2008 INSIDE L TYPE", 
+            "TAIL LAMP RVR 2012 OUTSIDE R TYPE", "TAIL LAMP RVR 2012 OUTSIDE L TYPE", "TAIL LAMP MIRAGE 2014 R TYPE", "TAIL LAMP MIRAGE 2014 L TYPE", 
+            "TAIL LAMP RX300 2016 OUTSIDE R TYPE", "TAIL LAMP RX300 2016 OUTSIDE L TYPE", "TAIL LAMP RX300 2016 INSIDE R TYPE", 
+            "TAIL LAMP RX300 2016 INSIDE L TYPE", "TAIL LAMP RX300 2020 OUTSIDE R TYPE", "TAIL LAMP RX300 2020 OUTSIDE L TYPE", 
+            "TAIL LAMP RX300 2020 INSIDE R TYPE", "TAIL LAMP RX300 2020 INSIDE L TYPE", "TAIL LAMP MAZDA 3 2020 OUTSIDE R TYPE", 
+            "TAIL LAMP MAZDA 3 2020 OUTSIDE L TYPE", "TAIL LAMP MAZDA 3 2020 INSIDE R TYPE", "TAIL LAMP MAZDA 3 2020 INSIDE L TYPE", 
+            "FRONT BUMPER HARRIER 2014 ORDINARY TYPE", "FRONT BUMPER HARRIER 2014 MODELLISTA TYPE", "FRONT BUMPER HARRIER 2018 ORDINARY TYPE", 
+            "FRONT BUMPER HARRIER 2018 MODELLISTA TYPE", "FRONT BUMPER HARRIER 2020 TYPE", "FRONT BUMPER PRADO 150 2010 TYPE", 
+            "FRONT BUMPER PRADO 150 2014 TYPE", "FRONT BUMPER PRADO 150 2018 TYPE", "FRONT BUMPER XTRAIL T32 2014 TYPE", 
+            "FRONT BUMPER XTRAIL T32 2018 TYPE", "FRONT BUMPER RAV4 2019 TYPE", "FRONT BUMPER VANGUARD TYPE", "FRONT BUMPER CX5 2013 TYPE", 
+            "FRONT BUMPER CX5 2015 TYPE", "FRONT BUMPER CX5 2018 TYPE", "FRONT BUMPER ATENZA 2014 TYPE", "FRONT BUMPER ATENZA 2018 TYPE", 
+            "FRONT BUMPER DEMIO DJ TYPE", "FRONT BUMPER FORESTER S13 2013 TYPE", "FRONT BUMPER FORESTER S13 2016 TYPE", 
+            "FRONT BUMPER FORESTER S14 TYPE", "FRONT BUMPER SUBARU XV 2014 TYPE", "FRONT BUMPER SUBARU XV 2018 TYPE", 
+            "FRONT BUMPER IMPREZA SPORT 2017 TYPE", "FRONT BUMPER FIT GK3 2014 TYPE", "FRONT BUMPER FIT GR1 2020 TYPE", 
+            "FRONT BUMPER PASSO 2016 MODELLISTA TYPE", "FRONT BUMPER PASSO 2016 ORDINARY TYPE", "FRONT BUMPER VITZ 2014 KSP130 TYPE", 
+            "FRONT BUMPER VITZ 2017 TYPE", "FRONT BUMPER AXELLA 2014 TYPE", "FRONT BUMPER SIENTA 2016 TYPE", "FRONT BUMPER CHR TYPE", 
+            "FRONT BUMPER NOTE E12 2014 DIGS TYPE", "FRONT BUMPER NOTE E12 2014 ORDINARY TYPE", "FRONT BUMPER NOTE E12 2017 RIDER TYPE", 
+            "FRONT BUMPER NOTE E12 2017 ORDINARY TYPE", "FRONT BUMPER NOTE E13 TYPE", "FRONT BUMPER DUALIS TYPE", "FRONT BUMPER PROBOX 2015 TYPE", 
+            "FRONT BUMPER FIELDER 165 TYPE", "FRONT BUMPER SHUTTLE 2015 TYPE", "FRONT BUMPER OUTLANDER 2014 TYPE", "FRONT BUMPER CROWN 210 TYPE", 
+            "FRONT BUMPER ATENZA 2008 TYPE", "FRONT BUMPER RVR 2012 TYPE", "FRONT BUMPER MIRAGE 2014 TYPE", "FRONT BUMPER MIRAGE 2020 TYPE", 
+            "FRONT BUMPER AUDI Q5 2010 TYPE", "FRONT BUMPER AUDI Q5 2014 TYPE", "FRONT BUMPER NX300 F-SPORT TYPE", 
+            "FRONT BUMPER RX300 2016 F-SPORT TYPE", "FRONT BUMPER RX300 2020 F-SPORT TYPE", "FRONT BUMPER MAZDA 3 2020 TYPE", 
+            "GRILLE HARRIER 2014 GENUINE TYPE", "GRILLE HARRIER 2014 ORDINARY TYPE", "GRILLE HARRIER 2018 TYPE", "GRILLE HARRIER 2020 TYPE", 
+            "GRILLE PRADO 150 2010 TYPE", "GRILLE PRADO 150 2014 TYPE", "GRILLE PRADO 150 2018 TYPE", "GRILLE XTRAIL T32 2014 TYPE", 
+            "GRILLE XTRAIL T32 2018 TYPE", "GRILLE RAV4 2019 TYPE", "GRILLE VANGUARD TYPE", "GRILLE CX5 2013 TYPE", "GRILLE CX5 2015 TYPE", 
+            "GRILLE CX5 2018 TYPE", "GRILLE ATENZA 2014 TYPE", "GRILLE ATENZA 2018 MESH TYPE", "GRILLE DEMIO DJ TYPE", 
+            "GRILLE FORESTER S13 2013 TYPE", "GRILLE FORESTER S13 2016 TYPE", "GRILLE FORESTER S14 TYPE", "GRILLE SUBARU XV 2014 TYPE", 
+            "GRILLE SUBARU XV 2018 TYPE", "GRILLE IMPREZA SPORT 2017 TYPE", "GRILLE FIT GK3 2014 TYPE", "GRILLE FIT GR1 2020 TYPE", 
+            "GRILLE PASSO 2016 TYPE", "GRILLE VITZ 2014 KSP130 TYPE", "GRILLE VITZ 2017 TYPE", "GRILLE AXELLA 2014 TYPE", 
+            "GRILLE SIENTA 2016 TYPE", "GRILLE CHR TYPE", "GRILLE NOTE E12 2014 TYPE", "GRILLE NOTE E12 2017 TYPE", "GRILLE NOTE E13 TYPE", 
+            "GRILLE DUALIS TYPE", "GRILLE PROBOX 2015 TYPE", "GRILLE FIELDER 165 TYPE", "GRILLE SHUTTLE 2015 TYPE", "GRILLE OUTLANDER 2014 TYPE", 
+            "GRILLE CROWN 210 TYPE", "GRILLE ATENZA 2008 TYPE", "GRILLE RVR 2012 TYPE", "GRILLE MIRAGE 2014 TYPE", "GRILLE MIRAGE 2020 TYPE", 
+            "GRILLE AUDI Q5 2010 TYPE", "GRILLE AUDI Q5 2014 TYPE", "GRILLE NX300 TYPE", "GRILLE RX300 2016 TYPE", "GRILLE RX300 2020 TYPE", 
+            "GRILLE MAZDA 3 2020 TYPE", "BONNET HARRIER 2014", "BONNET HARRIER 2020", "BONNET PRADO 150", "BONNET XTRAIL T32", "BONNET RAV4 2019", 
+            "BONNET VANGUARD", "BONNET CX5 2013", "BONNET CX5 2018", "BONNET ATENZA 2014", "BONNET DEMIO DJ", "BONNET FORESTER S13", 
+            "BONNET FORESTER S14", "BONNET SUBARU XV 2014", "BONNET FIT GK3 2014", "BONNET FIT GR1 2020", "BONNET PASSO 2016", 
+            "BONNET VITZ 2014", "BONNET AXELLA 2014", "BONNET SIENTA 2016", "BONNET CHR", "BONNET NOTE E12", "BONNET NOTE E13", 
+            "BONNET DUALIS", "BONNET PROBOX 2015", "BONNET FIELDER 165", "BONNET SHUTTLE 2015", "BONNET OUTLANDER 2014", "BONNET CROWN 210", 
+            "BONNET RVR 2012", "BONNET MIRAGE 2014", "BONNET NX300", "BONNET RX300 2016", "BONNET MAZDA 3 2020", "FENDER MOULDING HARRIER 2014 R", 
+            "FENDER MOULDING HARRIER 2014 L", "FENDER MOULDING HARRIER 2020 R", "FENDER MOULDING HARRIER 2020 L", "FENDER MOULDING RAV4 2019 R", 
+            "FENDER MOULDING RAV4 2019 L", "FENDER MOULDING CX5 2013 R", "FENDER MOULDING CX5 2013 L", "FENDER MOULDING CX5 2018 R", 
+            "FENDER MOULDING CX5 2018 L", "FENDER MOULDING SUBARU XV 2014 R", "FENDER MOULDING SUBARU XV 2014 L", "FENDER MOULDING SUBARU XV 2018 R", 
+            "FENDER MOULDING SUBARU XV 2018 L", "FENDER MOULDING CHR R", "FENDER MOULDING CHR L", "FENDER MOULDING NX300 R", 
+            "FENDER MOULDING NX300 L", "FENDER MOULDING RX300 2016 R", "FENDER MOULDING RX300 2016 L", "FENDER MOULDING RX300 2020 R", 
+            "FENDER MOULDING RX300 2020 L", "BUMPER MOULDING HARRIER 2014 FRONT R", "BUMPER MOULDING HARRIER 2014 FRONT L", 
+            "BUMPER MOULDING HARRIER 2018 FRONT R", "BUMPER MOULDING HARRIER 2018 FRONT L", "BUMPER MOULDING HARRIER 2014 REAR R", 
+            "BUMPER MOULDING HARRIER 2014 REAR L", "BUMPER MOULDING HARRIER 2018 REAR R", "BUMPER MOULDING HARRIER 2018 REAR L", 
+            "BUMPER MOULDING HARRIER 2020 FRONT R", "BUMPER MOULDING HARRIER 2020 FRONT L", "BUMPER MOULDING HARRIER 2020 REAR R", 
+            "BUMPER MOULDING HARRIER 2020 REAR L", "BUMPER MOULDING RAV4 2019 FRONT R", "BUMPER MOULDING RAV4 2019 FRONT L", 
+            "BUMPER MOULDING RAV4 2019 REAR R", "BUMPER MOULDING RAV4 2019 REAR L", "BUMPER MOULDING CX5 2013 FRONT R", 
+            "BUMPER MOULDING CX5 2013 FRONT L", "BUMPER MOULDING CX5 2013 REAR R", "BUMPER MOULDING CX5 2013 REAR L", 
+            "BUMPER MOULDING CX5 2018 FRONT R", "BUMPER MOULDING CX5 2018 FRONT L", "BUMPER MOULDING CX5 2018 REAR R", 
+            "BUMPER MOULDING CX5 2018 REAR L", "BUMPER MOULDING CHR FRONT R", "BUMPER MOULDING CHR FRONT L", "BUMPER MOULDING CHR REAR R", 
+            "BUMPER MOULDING CHR REAR L", "BUMPER MOULDING NX300 FRONT R", "BUMPER MOULDING NX300 FRONT L", "BUMPER MOULDING NX300 REAR R", 
+            "BUMPER MOULDING NX300 REAR L", "BUMPER MOULDING RX300 2016 FRONT R", "BUMPER MOULDING RX300 2016 FRONT L", 
+            "BUMPER MOULDING RX300 2016 REAR R", "BUMPER MOULDING RX300 2016 REAR L", "BUMPER MOULDING RX300 2020 FRONT R", 
+            "BUMPER MOULDING RX300 2020 FRONT L", "BUMPER MOULDING RX300 2020 REAR R", "BUMPER MOULDING RX300 2020 REAR L", 
+            "BUMPER SLIDE HARRIER 2014 FRONT R", "BUMPER SLIDE HARRIER 2014 FRONT L", "BUMPER SLIDE HARRIER 2014 REAR R", 
+            "BUMPER SLIDE HARRIER 2014 REAR L", "BUMPER SLIDE HARRIER 2020 FRONT R", "BUMPER SLIDE HARRIER 2020 FRONT L", 
+            "BUMPER SLIDE HARRIER 2020 REAR R", "BUMPER SLIDE HARRIER 2020 REAR L", "BUMPER SLIDE PRADO 150 2010 FRONT R", 
+            "BUMPER SLIDE PRADO 150 2010 FRONT L", "BUMPER SLIDE PRADO 150 2010 REAR R", "BUMPER SLIDE PRADO 150 2010 REAR L", 
+            "BUMPER SLIDE PRADO 150 2018 FRONT R", "BUMPER SLIDE PRADO 150 2018 FRONT L", "BUMPER SLIDE PRADO 150 2018 REAR R", 
+            "BUMPER SLIDE PRADO 150 2018 REAR L", "BUMPER SLIDE XTRAIL T32 FRONT R", "BUMPER SLIDE XTRAIL T32 FRONT L", 
+            "BUMPER SLIDE XTRAIL T32 REAR R", "BUMPER SLIDE XTRAIL T32 REAR L", "BUMPER SLIDE RAV4 2019 FRONT R", 
+            "BUMPER SLIDE RAV4 2019 FRONT L", "BUMPER SLIDE RAV4 2019 REAR R", "BUMPER SLIDE RAV4 2019 REAR L", 
+            "BUMPER SLIDE VANGUARD FRONT R", "BUMPER SLIDE VANGUARD FRONT L", "BUMPER SLIDE VANGUARD REAR R", 
+            "BUMPER SLIDE VANGUARD REAR L", "BUMPER SLIDE CX5 2013 FRONT R", "BUMPER SLIDE CX5 2013 FRONT L", 
+            "BUMPER SLIDE CX5 2013 REAR R", "BUMPER SLIDE CX5 2013 REAR L", "BUMPER SLIDE CX5 2018 FRONT R", 
+            "BUMPER SLIDE CX5 2018 FRONT L", "BUMPER SLIDE CX5 2018 REAR R", "BUMPER SLIDE CX5 2018 REAR L", 
+            "BUMPER SLIDE ATENZA 2014 FRONT R", "BUMPER SLIDE ATENZA 2014 FRONT L", "BUMPER SLIDE ATENZA 2014 REAR R", 
+            "BUMPER SLIDE ATENZA 2014 REAR L", "BUMPER SLIDE DEMIO DJ FRONT R", "BUMPER SLIDE DEMIO DJ FRONT L", 
+            "BUMPER SLIDE DEMIO DJ REAR R", "BUMPER SLIDE DEMIO DJ REAR L", "BUMPER SLIDE FORESTER S13 FRONT R", 
+            "BUMPER SLIDE FORESTER S13 FRONT L", "BUMPER SLIDE FORESTER S13 REAR R", "BUMPER SLIDE FORESTER S13 REAR L", 
+            "BUMPER SLIDE SUBARU XV 2014 FRONT R", "BUMPER SLIDE SUBARU XV 2014 FRONT L", "BUMPER SLIDE SUBARU XV 2018 FRONT R", 
+            "BUMPER SLIDE SUBARU XV 2018 FRONT L", "BUMPER SLIDE FIT GK3 FRONT R", "BUMPER SLIDE FIT GK3 FRONT L", 
+            "BUMPER SLIDE FIT GK3 REAR R", "BUMPER SLIDE FIT GK3 REAR L", "BUMPER SLIDE PASSO 2016 FRONT R", 
+            "BUMPER SLIDE PASSO 2016 FRONT L", "BUMPER SLIDE VITZ 2014 FRONT R", "BUMPER SLIDE VITZ 2014 FRONT L", 
+            "BUMPER SLIDE AXELLA 2014 FRONT R", "BUMPER SLIDE AXELLA 2014 FRONT L", "BUMPER SLIDE AXELLA 2014 REAR R", 
+            "BUMPER SLIDE AXELLA 2014 REAR L", "BUMPER SLIDE SIENTA 2016 FRONT R", "BUMPER SLIDE SIENTA 2016 FRONT L", 
+            "BUMPER SLIDE SIENTA 2016 REAR R", "BUMPER SLIDE SIENTA 2016 REAR L", "BUMPER SLIDE CHR FRONT R", 
+            "BUMPER SLIDE CHR FRONT L", "BUMPER SLIDE CHR REAR R", "BUMPER SLIDE CHR REAR L", "BUMPER SLIDE NOTE E12 FRONT R", 
+            "BUMPER SLIDE NOTE E12 FRONT L", "BUMPER SLIDE NOTE E12 REAR R", "BUMPER SLIDE NOTE E12 REAR L", 
+            "BUMPER SLIDE PROBOX 2015 FRONT R", "BUMPER SLIDE PROBOX 2015 FRONT L", "BUMPER SLIDE PROBOX 2015 REAR R", 
+            "BUMPER SLIDE PROBOX 2015 REAR L", "BUMPER SLIDE FIELDER 165 FRONT R", "BUMPER SLIDE FIELDER 165 FRONT L", 
+            "BUMPER SLIDE FIELDER 165 REAR R", "BUMPER SLIDE FIELDER 165 REAR L", "BUMPER SLIDE SHUTTLE 2015 FRONT R", 
+            "BUMPER SLIDE SHUTTLE 2015 FRONT L", "BUMPER SLIDE OUTLANDER 2014 FRONT R", "BUMPER SLIDE OUTLANDER 2014 FRONT L", 
+            "BUMPER SLIDE CROWN 210 FRONT R", "BUMPER SLIDE CROWN 210 FRONT L", "BUMPER SLIDE CROWN 210 REAR R", 
+            "BUMPER SLIDE CROWN 210 REAR L", "BUMPER SLIDE RVR 2012 FRONT R", "BUMPER SLIDE RVR 2012 FRONT L", 
+            "BUMPER SLIDE RVR 2012 REAR R", "BUMPER SLIDE RVR 2012 REAR L", "BUMPER SLIDE MIRAGE 2014 FRONT R", 
+            "BUMPER SLIDE MIRAGE 2014 FRONT L", "BUMPER SLIDE MIRAGE 2014 REAR R", "BUMPER SLIDE MIRAGE 2014 REAR L", 
+            "BUMPER SLIDE NX300 FRONT R", "BUMPER SLIDE NX300 FRONT L", "BUMPER SLIDE RX300 2016 FRONT R", 
+            "BUMPER SLIDE RX300 2016 FRONT L", "BUMPER SLIDE RX300 2016 REAR R", "BUMPER SLIDE RX300 2016 REAR L", 
+            "BUMPER SLIDE MAZDA 3 2020 FRONT R", "BUMPER SLIDE MAZDA 3 2020 FRONT L", "FENDER LINER HARRIER 2014 R", 
+            "FENDER LINER HARRIER 2014 L", "FENDER LINER HARRIER 2020 R", "FENDER LINER HARRIER 2020 L", "FENDER LINER PRADO 150 R", 
+            "FENDER LINER PRADO 150 L", "FENDER LINER XTRAIL T32 R", "FENDER LINER XTRAIL T32 L", "FENDER LINER RAV4 2019 R", 
+            "FENDER LINER RAV4 2019 L", "FENDER LINER VANGUARD R", "FENDER LINER VANGUARD L", "FENDER LINER CX5 2013 R", 
+            "FENDER LINER CX5 2013 L", "FENDER LINER CX5 2018 R", "FENDER LINER CX5 2018 L", "FENDER LINER ATENZA 2014 R", 
+            "FENDER LINER ATENZA 2014 L", "FENDER LINER DEMIO DJ R", "FENDER LINER DEMIO DJ L", "FENDER LINER FORESTER S13 R", 
+            "FENDER LINER FORESTER S13 L", "FENDER LINER SUBARU XV 2014 R", "FENDER LINER SUBARU XV 2014 L", "FENDER LINER FIT GK3 2014 R", 
+            "FENDER LINER FIT GK3 2014 L", "FENDER LINER FIT GR1 2020 R", "FENDER LINER FIT GR1 2020 L", "FENDER LINER PASSO 2016 R", 
+            "FENDER LINER PASSO 2016 L", "FENDER LINER VITZ 2014 R", "FENDER LINER VITZ 2014 L", "FENDER LINER AXELLA 2014 R", 
+            "FENDER LINER AXELLA 2014 L", "FENDER LINER SIENTA 2016 R", "FENDER LINER SIENTA 2016 L", "FENDER LINER CHR R", 
+            "FENDER LINER CHR L", "FENDER LINER NOTE E12 R", "FENDER LINER NOTE E12 L", "FENDER LINER PROBOX 2015 R", 
+            "FENDER LINER PROBOX 2015 L", "FENDER LINER FIELDER 165 R", "FENDER LINER FIELDER 165 L", "FENDER LINER SHUTTLE 2015 R", 
+            "FENDER LINER SHUTTLE 2015 L", "FENDER LINER OUTLANDER 2014 R", "FENDER LINER OUTLANDER 2014 L", "FENDER LINER CROWN 210 R", 
+            "FENDER LINER CROWN 210 L", "FENDER LINER RVR 2012 R", "FENDER LINER RVR 2012 L", "FENDER LINER MIRAGE 2014 R", 
+            "FENDER LINER MIRAGE 2014 L", "FENDER LINER NX300 R", "FENDER LINER NX300 L", "FENDER LINER RX300 2016 R", 
+            "FENDER LINER RX300 2016 L", "FENDER LINER MAZDA 3 2020 R", "FENDER LINER MAZDA 3 2020 L", "FOG LAMP COVER HARRIER 2014 R", 
+            "FOG LAMP COVER HARRIER 2014 L", "FOG LAMP COVER HARRIER 2018 R", "FOG LAMP COVER HARRIER 2018 L", 
+            "FOG LAMP COVER PRADO 150 2010 R", "FOG LAMP COVER PRADO 150 2010 L", "FOG LAMP COVER PRADO 150 2014 R", 
+            "FOG LAMP COVER PRADO 150 2014 L", "FOG LAMP COVER PRADO 150 2018 R", "FOG LAMP COVER PRADO 150 2018 L", 
+            "FOG LAMP COVER XTRAIL T32 2014 R", "FOG LAMP COVER XTRAIL T32 2014 L", "FOG LAMP COVER XTRAIL T32 2018 R", 
+            "FOG LAMP COVER XTRAIL T32 2018 L", "FOG LAMP COVER RAV4 2019 R", "FOG LAMP COVER RAV4 2019 L", 
+            "FOG LAMP COVER VANGUARD R", "FOG LAMP COVER VANGUARD L", "FOG LAMP COVER CX5 2013 R", "FOG LAMP COVER CX5 2013 L", 
+            "FOG LAMP COVER CX5 2015 R", "FOG LAMP COVER CX5 2015 L", "FOG LAMP COVER CX5 2018 R", "FOG LAMP COVER CX5 2018 L", 
+            "FOG LAMP COVER ATENZA 2014 R", "FOG LAMP COVER ATENZA 2014 L", "FOG LAMP COVER ATENZA 2018 R", "FOG LAMP COVER ATENZA 2018 L", 
+            "FOG LAMP COVER DEMIO DJ R", "FOG LAMP COVER DEMIO DJ L", "FOG LAMP COVER FORESTER S13 R", "FOG LAMP COVER FORESTER S13 L", 
+            "FOG LAMP COVER SUBARU XV 2014 R", "FOG LAMP COVER SUBARU XV 2014 L", "FOG LAMP COVER SUBARU XV 2018 R", 
+            "FOG LAMP COVER SUBARU XV 2018 L", "FOG LAMP COVER FIT GK3 2014 R", "FOG LAMP COVER FIT GK3 2014 L", 
+            "FOG LAMP COVER PASSO 2016 R", "FOG LAMP COVER PASSO 2016 L", "FOG LAMP COVER VITZ 2014 R", "FOG LAMP COVER VITZ 2014 L", 
+            "FOG LAMP COVER VITZ 2017 R", "FOG LAMP COVER VITZ 2017 L", "FOG LAMP COVER AXELLA 2014 R", "FOG LAMP COVER AXELLA 2014 L", 
+            "FOG LAMP COVER SIENTA 2016 R", "FOG LAMP COVER SIENTA 2016 L", "FOG LAMP COVER CHR R", "FOG LAMP COVER CHR L", 
+            "FOG LAMP COVER NOTE E12 2014 R", "FOG LAMP COVER NOTE E12 2014 L", "FOG LAMP COVER NOTE E12 2017 R", 
+            "FOG LAMP COVER NOTE E12 2017 L", "FOG LAMP COVER PROBOX 2015 R", "FOG LAMP COVER PROBOX 2015 L", 
+            "FOG LAMP COVER FIELDER 165 R", "FOG LAMP COVER FIELDER 165 L", "FOG LAMP COVER SHUTTLE 2015 R", 
+            "FOG LAMP COVER SHUTTLE 2015 L", "FOG LAMP COVER OUTLANDER 2014 R", "FOG LAMP COVER OUTLANDER 2014 L", 
+            "FOG LAMP COVER RVR 2012 R", "FOG LAMP COVER RVR 2012 L", "FOG LAMP COVER MIRAGE 2014 R", "FOG LAMP COVER MIRAGE 2014 L", 
+            "FOG LAMP COVER AUDI Q5 2010 R", "FOG LAMP COVER AUDI Q5 2010 L", "FOG LAMP COVER AUDI Q5 2014 R", "FOG LAMP COVER AUDI Q5 2014 L", 
+            "FOG LAMP COVER MAZDA 3 2020 R", "FOG LAMP COVER MAZDA 3 2020 L", "BUMPER BRACKET HARRIER 2014 FRONT R", 
+            "BUMPER BRACKET HARRIER 2014 FRONT L", "BUMPER BRACKET HARRIER 2014 REAR R", "BUMPER BRACKET HARRIER 2014 REAR L", 
+            "BUMPER BRACKET HARRIER 2020 FRONT R", "BUMPER BRACKET HARRIER 2020 FRONT L", "BUMPER BRACKET PRADO 150 2010 FRONT R", 
+            "BUMPER BRACKET PRADO 150 2010 FRONT L", "BUMPER BRACKET XTRAIL T32 FRONT R", "BUMPER BRACKET XTRAIL T32 FRONT L", 
+            "BUMPER BRACKET RAV4 2019 FRONT R", "BUMPER BRACKET RAV4 2019 FRONT L", "BUMPER BRACKET CX5 2013 FRONT R", 
+            "BUMPER BRACKET CX5 2013 FRONT L", "BUMPER BRACKET CX5 2013 REAR R", "BUMPER BRACKET CX5 2013 REAR L", 
+            "BUMPER BRACKET CX5 2018 FRONT R", "BUMPER BRACKET CX5 2018 FRONT L", "BUMPER BRACKET ATENZA 2014 FRONT R", 
+            "BUMPER BRACKET ATENZA 2014 FRONT L", "BUMPER BRACKET DEMIO DJ FRONT R", "BUMPER BRACKET DEMIO DJ FRONT L", 
+            "BUMPER BRACKET FORESTER S13 FRONT R", "BUMPER BRACKET FORESTER S13 FRONT L", "BUMPER BRACKET SUBARU XV 2014 FRONT R", 
+            "BUMPER BRACKET SUBARU XV 2014 FRONT L", "BUMPER BRACKET FIT GK3 2014 FRONT R", "BUMPER BRACKET FIT GK3 2014 FRONT L", 
+            "BUMPER BRACKET VITZ 2014 FRONT R", "BUMPER BRACKET VITZ 2014 FRONT L", "BUMPER BRACKET AXELLA 2014 FRONT R", 
+            "BUMPER BRACKET AXELLA 2014 FRONT L", "BUMPER BRACKET SIENTA 2016 FRONT R", "BUMPER BRACKET SIENTA 2016 FRONT L", 
+            "BUMPER BRACKET CHR FRONT R", "BUMPER BRACKET CHR FRONT L", "BUMPER BRACKET NOTE E12 FRONT R", "BUMPER BRACKET NOTE E12 FRONT L", 
+            "BUMPER BRACKET PROBOX 2015 FRONT R", "BUMPER BRACKET PROBOX 2015 FRONT L", "BUMPER BRACKET FIELDER 165 FRONT R", 
+            "BUMPER BRACKET FIELDER 165 FRONT L", "BUMPER BRACKET OUTLANDER 2014 FRONT R", "BUMPER BRACKET OUTLANDER 2014 FRONT L", 
+            "BUMPER BRACKET RVR 2012 FRONT R", "BUMPER BRACKET RVR 2012 FRONT L", "BUMPER BRACKET MIRAGE 2014 FRONT R", 
+            "BUMPER BRACKET MIRAGE 2014 FRONT L", "BUMPER BRACKET MAZDA 3 2020 FRONT R", "BUMPER BRACKET MAZDA 3 2020 FRONT L", 
+            "LOWER GRILLE HARRIER 2014 TYPE", "LOWER GRILLE HARRIER 2018 TYPE", "LOWER GRILLE HARRIER 2020 TYPE", 
+            "LOWER GRILLE PRADO 150 2014 TYPE", "LOWER GRILLE PRADO 150 2018 TYPE", "LOWER GRILLE XTRAIL T32 2014 TYPE", 
+            "LOWER GRILLE XTRAIL T32 2018 TYPE", "LOWER GRILLE RAV4 2019 TYPE", "LOWER GRILLE CX5 2013 TYPE", 
+            "LOWER GRILLE CX5 2015 TYPE", "LOWER GRILLE CX5 2018 TYPE", "LOWER GRILLE ATENZA 2014 TYPE", 
+            "LOWER GRILLE ATENZA 2018 TYPE", "LOWER GRILLE DEMIO DJ TYPE", "LOWER GRILLE FORESTER S13 2013 TYPE", 
+            "LOWER GRILLE FORESTER S13 2016 TYPE", "LOWER GRILLE FORESTER S14 TYPE", "LOWER GRILLE SUBARU XV 2014 TYPE", 
+            "LOWER GRILLE SUBARU XV 2018 TYPE", "LOWER GRILLE FIT GK3 2014 TYPE", "LOWER GRILLE VITZ 2014 KSP130 TYPE", 
+            "LOWER GRILLE VITZ 2017 TYPE", "LOWER GRILLE AXELLA 2014 TYPE", "LOWER GRILLE SIENTA 2016 TYPE", "LOWER GRILLE CHR TYPE", 
+            "LOWER GRILLE NOTE E12 2014 TYPE", "LOWER GRILLE NOTE E12 2017 TYPE", "LOWER GRILLE PROBOX 2015 TYPE", 
+            "LOWER GRILLE FIELDER 165 TYPE", "LOWER GRILLE OUTLANDER 2014 TYPE", "LOWER GRILLE CROWN 210 TYPE", 
+            "LOWER GRILLE RVR 2012 TYPE", "LOWER GRILLE MIRAGE 2014 TYPE", "LOWER GRILLE MIRAGE 2020 TYPE", 
+            "LOWER GRILLE AUDI Q5 2010 TYPE", "LOWER GRILLE AUDI Q5 2014 TYPE", "LOWER GRILLE RX300 2016 TYPE", 
+            "LOWER GRILLE MAZDA 3 2020 TYPE", "BUMPER REFLECTOR HARRIER 2014 R", "BUMPER REFLECTOR HARRIER 2014 L", 
+            "BUMPER REFLECTOR HARRIER 2020 R", "BUMPER REFLECTOR HARRIER 2020 L", "BUMPER REFLECTOR PRADO 150 R", 
+            "BUMPER REFLECTOR PRADO 150 L", "BUMPER REFLECTOR XTRAIL T32 R", "BUMPER REFLECTOR XTRAIL T32 L", 
+            "BUMPER REFLECTOR RAV4 2019 R", "BUMPER REFLECTOR RAV4 2019 L", "BUMPER REFLECTOR CX5 2013 R", 
+            "BUMPER REFLECTOR CX5 2013 L", "BUMPER REFLECTOR CX5 2018 R", "BUMPER REFLECTOR CX5 2018 L", 
+            "BUMPER REFLECTOR ATENZA 2014 R", "BUMPER REFLECTOR ATENZA 2014 L", "BUMPER REFLECTOR DEMIO DJ R", 
+            "BUMPER REFLECTOR DEMIO DJ L", "BUMPER REFLECTOR FIT GK3 R", "BUMPER REFLECTOR FIT GK3 L", "BUMPER REFLECTOR VITZ 2014 R", 
+            "BUMPER REFLECTOR VITZ 2014 L", "BUMPER REFLECTOR VITZ 2017 R", "BUMPER REFLECTOR VITZ 2017 L", "BUMPER REFLECTOR AXELLA 2014 R", 
+            "BUMPER REFLECTOR AXELLA 2014 L", "BUMPER REFLECTOR SIENTA 2016 R", "BUMPER REFLECTOR SIENTA 2016 L", "BUMPER REFLECTOR CHR R", 
+            "BUMPER REFLECTOR CHR L", "BUMPER REFLECTOR NOTE E12 R", "BUMPER REFLECTOR NOTE E12 L", "BUMPER REFLECTOR FIELDER 165 R", 
+            "BUMPER REFLECTOR FIELDER 165 L", "BUMPER REFLECTOR OUTLANDER 2014 R", "BUMPER REFLECTOR OUTLANDER 2014 L", 
+            "BUMPER REFLECTOR RVR 2012 R", "BUMPER REFLECTOR RVR 2012 L", "BUMPER REFLECTOR MIRAGE 2014 R", "BUMPER REFLECTOR MIRAGE 2014 L", 
+            "BUMPER REFLECTOR RX300 2016 R", "BUMPER REFLECTOR RX300 2016 L", "WHEEL MOULDING HARRIER 2014 FRONT R", 
+            "WHEEL MOULDING HARRIER 2014 FRONT L", "WHEEL MOULDING HARRIER 2014 REAR R", "WHEEL MOULDING HARRIER 2014 REAR L", 
+            "WHEEL MOULDING HARRIER 2020 FRONT R", "WHEEL MOULDING HARRIER 2020 FRONT L", "WHEEL MOULDING HARRIER 2020 REAR R", 
+            "WHEEL MOULDING HARRIER 2020 REAR L", "WHEEL MOULDING RAV4 2019 FRONT R", "WHEEL MOULDING RAV4 2019 FRONT L", 
+            "WHEEL MOULDING RAV4 2019 REAR R", "WHEEL MOULDING RAV4 2019 REAR L", "WHEEL MOULDING CX5 2013 FRONT R", 
+            "WHEEL MOULDING CX5 2013 FRONT L", "WHEEL MOULDING CX5 2013 REAR R", "WHEEL MOULDING CX5 2013 REAR L", 
+            "WHEEL MOULDING CX5 2018 FRONT R", "WHEEL MOULDING CX5 2018 FRONT L", "WHEEL MOULDING CX5 2018 REAR R", 
+            "WHEEL MOULDING CX5 2018 REAR L", "WHEEL MOULDING SUBARU XV 2014 FRONT R", "WHEEL MOULDING SUBARU XV 2014 FRONT L", 
+            "WHEEL MOULDING SUBARU XV 2014 REAR R", "WHEEL MOULDING SUBARU XV 2014 REAR L", "WHEEL MOULDING SUBARU XV 2018 FRONT R", 
+            "WHEEL MOULDING SUBARU XV 2018 FRONT L", "WHEEL MOULDING SUBARU XV 2018 REAR R", "WHEEL MOULDING SUBARU XV 2018 REAR L", 
+            "WHEEL MOULDING CHR FRONT R", "WHEEL MOULDING CHR FRONT L", "WHEEL MOULDING CHR REAR R", "WHEEL MOULDING CHR REAR L", 
+            "WHEEL MOULDING NX300 FRONT R", "WHEEL MOULDING NX300 FRONT L", "WHEEL MOULDING NX300 REAR R", "WHEEL MOULDING NX300 REAR L", 
+            "WHEEL MOULDING RX300 2016 FRONT R", "WHEEL MOULDING RX300 2016 FRONT L", "WHEEL MOULDING RX300 2016 REAR R", 
+            "WHEEL MOULDING RX300 2016 REAR L", "WHEEL MOULDING RX300 2020 FRONT R", "WHEEL MOULDING RX300 2020 FRONT L", 
+            "WHEEL MOULDING RX300 2020 REAR R", "WHEEL MOULDING RX300 2020 REAR L", "WEATHERSTRIP HARRIER 2014 DOOR FL", 
+            "WEATHERSTRIP HARRIER 2014 DOOR FR", "WEATHERSTRIP HARRIER 2014 DOOR RL", "WEATHERSTRIP HARRIER 2014 DOOR RR", 
+            "WEATHERSTRIP PRADO 150 DOOR FL", "WEATHERSTRIP PRADO 150 DOOR FR", "WEATHERSTRIP PRADO 150 DOOR RL", 
+            "WEATHERSTRIP PRADO 150 DOOR RR", "WEATHERSTRIP XTRAIL T32 DOOR FL", "WEATHERSTRIP XTRAIL T32 DOOR FR", 
+            "WEATHERSTRIP XTRAIL T32 DOOR RL", "WEATHERSTRIP XTRAIL T32 DOOR RR", "WEATHERSTRIP RAV4 2019 DOOR FL", 
+            "WEATHERSTRIP RAV4 2019 DOOR FR", "WEATHERSTRIP RAV4 2019 DOOR RL", "WEATHERSTRIP RAV4 2019 DOOR RR", 
+            "WEATHERSTRIP VANGUARD DOOR FL", "WEATHERSTRIP VANGUARD DOOR FR", "WEATHERSTRIP VANGUARD DOOR RL", 
+            "WEATHERSTRIP VANGUARD DOOR RR", "WEATHERSTRIP CX5 2013 DOOR FL", "WEATHERSTRIP CX5 2013 DOOR FR", 
+            "WEATHERSTRIP CX5 2013 DOOR RL", "WEATHERSTRIP CX5 2013 DOOR RR", "WEATHERSTRIP CX5 2018 DOOR FL", 
+            "WEATHERSTRIP CX5 2018 DOOR FR", "WEATHERSTRIP CX5 2018 DOOR RL", "WEATHERSTRIP CX5 2018 DOOR RR", 
+            "WEATHERSTRIP ATENZA 2014 DOOR FL", "WEATHERSTRIP ATENZA 2014 DOOR FR", "WEATHERSTRIP ATENZA 2014 DOOR RL", 
+            "WEATHERSTRIP ATENZA 2014 DOOR RR", "WEATHERSTRIP FORESTER S13 DOOR FL", "WEATHERSTRIP FORESTER S13 DOOR FR", 
+            "WEATHERSTRIP FORESTER S13 DOOR RL", "WEATHERSTRIP FORESTER S13 DOOR RR", "WEATHERSTRIP FIT GK3 DOOR FL", 
+            "WEATHERSTRIP FIT GK3 DOOR FR", "WEATHERSTRIP FIT GK3 DOOR RL", "WEATHERSTRIP FIT GK3 DOOR RR", 
+            "WEATHERSTRIP VITZ 2014 DOOR FL", "WEATHERSTRIP VITZ 2014 DOOR FR", "WEATHERSTRIP VITZ 2014 DOOR RL", 
+            "WEATHERSTRIP VITZ 2014 DOOR RR", "WEATHERSTRIP AXELLA 2014 DOOR FL", "WEATHERSTRIP AXELLA 2014 DOOR FR", 
+            "WEATHERSTRIP AXELLA 2014 DOOR RL", "WEATHERSTRIP AXELLA 2014 DOOR RR", "WEATHERSTRIP CHR DOOR FL", 
+            "WEATHERSTRIP CHR DOOR FR", "WEATHERSTRIP CHR DOOR RL", "WEATHERSTRIP CHR DOOR RR", "WEATHERSTRIP NOTE E12 DOOR FL", 
+            "WEATHERSTRIP NOTE E12 DOOR FR", "WEATHERSTRIP NOTE E12 DOOR RL", "WEATHERSTRIP NOTE E12 DOOR RR", 
+            "WEATHERSTRIP PROBOX 2015 DOOR FL", "WEATHERSTRIP PROBOX 2015 DOOR FR", "WEATHERSTRIP PROBOX 2015 DOOR RL", 
+            "WEATHERSTRIP PROBOX 2015 DOOR RR", "WEATHERSTRIP FIELDER 165 DOOR FL", "WEATHERSTRIP FIELDER 165 DOOR FR", 
+            "WEATHERSTRIP FIELDER 165 DOOR RL", "WEATHERSTRIP FIELDER 165 DOOR RR", "WEATHERSTRIP SHUTTLE 2015 DOOR FL", 
+            "WEATHERSTRIP SHUTTLE 2015 DOOR FR", "WEATHERSTRIP SHUTTLE 2015 DOOR RL", "WEATHERSTRIP SHUTTLE 2015 DOOR RR", 
+            "WEATHERSTRIP OUTLANDER 2014 DOOR FL", "WEATHERSTRIP OUTLANDER 2014 DOOR FR", "WEATHERSTRIP OUTLANDER 2014 DOOR RL", 
+            "WEATHERSTRIP OUTLANDER 2014 DOOR RR", "WEATHERSTRIP CROWN 210 DOOR FL", "WEATHERSTRIP CROWN 210 DOOR FR", 
+            "WEATHERSTRIP CROWN 210 DOOR RL", "WEATHERSTRIP CROWN 210 DOOR RR", "WEATHERSTRIP RVR 2012 DOOR FL", 
+            "WEATHERSTRIP RVR 2012 DOOR FR", "WEATHERSTRIP RVR 2012 DOOR RL", "WEATHERSTRIP RVR 2012 DOOR RR", 
+            "WEATHERSTRIP MIRAGE 2014 DOOR FL", "WEATHERSTRIP MIRAGE 2014 DOOR FR", "WEATHERSTRIP MIRAGE 2014 DOOR RL", 
+            "WEATHERSTRIP MIRAGE 2014 DOOR RR", "WEATHERSTRIP RX300 2016 DOOR FL", "WEATHERSTRIP RX300 2016 DOOR FR", 
+            "WEATHERSTRIP RX300 2016 DOOR RL", "WEATHERSTRIP RX300 2016 DOOR RR", "WEATHERSTRIP MAZDA 3 2020 DOOR FL", 
+            "WEATHERSTRIP MAZDA 3 2020 DOOR FR", "WEATHERSTRIP MAZDA 3 2020 DOOR RL", "WEATHERSTRIP MAZDA 3 2020 DOOR RR", 
+            "BONNET SHOCK HARRIER 2014 R", "BONNET SHOCK HARRIER 2014 L", "BONNET SHOCK PRADO 150 R", "BONNET SHOCK PRADO 150 L", 
+            "BONNET SHOCK CX5 2013 R", "BONNET SHOCK CX5 2013 L", "BONNET SHOCK CX5 2018 R", "BONNET SHOCK CX5 2018 L", 
+            "BONNET SHOCK CROWN 210 R", "BONNET SHOCK CROWN 210 L", "BONNET SHOCK RX300 2016 R", "BONNET SHOCK RX300 2016 L", 
+            "BOOT SHOCK HARRIER 2014 MANUAL R", "BOOT SHOCK HARRIER 2014 MANUAL L", "BOOT SHOCK HARRIER 2014 ELECTRIC R", 
+            "BOOT SHOCK HARRIER 2014 ELECTRIC L", "BOOT SHOCK HARRIER 2020 ELECTRIC R", "BOOT SHOCK HARRIER 2020 ELECTRIC L", 
+            "BOOT SHOCK PRADO 150 R", "BOOT SHOCK PRADO 150 L", "BOOT SHOCK XTRAIL T32 MANUAL R", "BOOT SHOCK XTRAIL T32 MANUAL L", 
+            "BOOT SHOCK XTRAIL T32 ELECTRIC R", "BOOT SHOCK XTRAIL T32 ELECTRIC L", "BOOT SHOCK RAV4 2019 ELECTRIC R", 
+            "BOOT SHOCK RAV4 2019 ELECTRIC L", "BOOT SHOCK VANGUARD R", "BOOT SHOCK VANGUARD L", "BOOT SHOCK CX5 2013 R", 
+            "BOOT SHOCK CX5 2013 L", "BOOT SHOCK CX5 2018 MANUAL R", "BOOT SHOCK CX5 2018 MANUAL L", "BOOT SHOCK CX5 2018 ELECTRIC R", 
+            "BOOT SHOCK CX5 2018 ELECTRIC L", "BOOT SHOCK FORESTER S13 MANUAL R", "BOOT SHOCK FORESTER S13 MANUAL L", 
+            "BOOT SHOCK FORESTER S13 ELECTRIC R", "BOOT SHOCK FORESTER S13 ELECTRIC L", "BOOT SHOCK FORESTER S14 ELECTRIC R", 
+            "BOOT SHOCK FORESTER S14 ELECTRIC L", "BOOT SHOCK SUBARU XV 2014 R", "BOOT SHOCK SUBARU XV 2014 L", 
+            "BOOT SHOCK SUBARU XV 2018 R", "BOOT SHOCK SUBARU XV 2018 L", "BOOT SHOCK FIT GK3 2014 R", "BOOT SHOCK FIT GK3 2014 L", 
+            "BOOT SHOCK VITZ 2014 R", "BOOT SHOCK VITZ 2014 L", "BOOT SHOCK SIENTA 2016 R", "BOOT SHOCK SIENTA 2016 L", 
+            "BOOT SHOCK CHR R", "BOOT SHOCK CHR L", "BOOT SHOCK NOTE E12 R", "BOOT SHOCK NOTE E12 L", "BOOT SHOCK PROBOX 2015 R", 
+            "BOOT SHOCK PROBOX 2015 L", "BOOT SHOCK FIELDER 165 R", "BOOT SHOCK FIELDER 165 L", "BOOT SHOCK SHUTTLE 2015 R", 
+            "BOOT SHOCK SHUTTLE 2015 L", "BOOT SHOCK OUTLANDER 2014 ELECTRIC R", "BOOT SHOCK OUTLANDER 2014 ELECTRIC L", 
+            "BOOT SHOCK RVR 2012 R", "BOOT SHOCK RVR 2012 L", "BOOT SHOCK MIRAGE 2014 R", "BOOT SHOCK MIRAGE 2014 L", 
+            "BOOT SHOCK RX300 2016 ELECTRIC R", "BOOT SHOCK RX300 2016 ELECTRIC L", "WINDSCREEN FINISHER HARRIER 2014 R", 
+            "WINDSCREEN FINISHER HARRIER 2014 L", "WINDSCREEN FINISHER HARRIER 2020 R", "WINDSCREEN FINISHER HARRIER 2020 L", 
+            "WINDSCREEN FINISHER PRADO 150 R", "WINDSCREEN FINISHER PRADO 150 L", "WINDSCREEN FINISHER XTRAIL T32 R", 
+            "WINDSCREEN FINISHER XTRAIL T32 L", "WINDSCREEN FINISHER RAV4 2019 R", "WINDSCREEN FINISHER RAV4 2019 L", 
+            "WINDSCREEN FINISHER VANGUARD R", "WINDSCREEN FINISHER VANGUARD L", "WINDSCREEN FINISHER CX5 2013 R", 
+            "WINDSCREEN FINISHER CX5 2013 L", "WINDSCREEN FINISHER CX5 2018 R", "WINDSCREEN FINISHER CX5 2018 L", 
+            "WINDSCREEN FINISHER ATENZA 2014 R", "WINDSCREEN FINISHER ATENZA 2014 L", "WINDSCREEN FINISHER FORESTER S13 R", 
+            "WINDSCREEN FINISHER FORESTER S13 L", "WINDSCREEN FINISHER FIT GK3 R", "WINDSCREEN FINISHER FIT GK3 L", 
+            "WINDSCREEN FINISHER VITZ 2014 R", "WINDSCREEN FINISHER VITZ 2014 L", "WINDSCREEN FINISHER AXELLA 2014 R", 
+            "WINDSCREEN FINISHER AXELLA 2014 L", "WINDSCREEN FINISHER CHR R", "WINDSCREEN FINISHER CHR L", 
+            "WINDSCREEN FINISHER NOTE E12 R", "WINDSCREEN FINISHER NOTE E12 L", "WINDSCREEN FINISHER PROBOX 2015 R", 
+            "WINDSCREEN FINISHER PROBOX 2015 L", "WINDSCREEN FINISHER FIELDER 165 R", "WINDSCREEN FINISHER FIELDER 165 L", 
+            "WINDSCREEN FINISHER OUTLANDER 2014 R", "WINDSCREEN FINISHER OUTLANDER 2014 L", "WINDSCREEN FINISHER CROWN 210 R", 
+            "WINDSCREEN FINISHER CROWN 210 L", "WINDSCREEN FINISHER RVR 2012 R", "WINDSCREEN FINISHER RVR 2012 L", 
+            "WINDSCREEN FINISHER RX300 2016 R", "WINDSCREEN FINISHER RX300 2016 L", "WINDSCREEN FINISHER MAZDA 3 2020 R", 
+            "WINDSCREEN FINISHER MAZDA 3 2020 L", "BODY MOULDING HARRIER 2014 DOOR R", "BODY MOULDING HARRIER 2014 DOOR L", 
+            "BODY MOULDING HARRIER 2020 DOOR R", "BODY MOULDING HARRIER 2020 DOOR L", "BODY MOULDING RAV4 2019 DOOR R", 
+            "BODY MOULDING RAV4 2019 DOOR L", "BODY MOULDING CX5 2013 DOOR R", "BODY MOULDING CX5 2013 DOOR L", 
+            "BODY MOULDING CX5 2018 DOOR R", "BODY MOULDING CX5 2018 DOOR L", "BODY MOULDING CHR DOOR R", "BODY MOULDING CHR DOOR L", 
+            "BODY MOULDING NX300 DOOR R", "BODY MOULDING NX300 DOOR L", "BODY MOULDING RX300 2016 DOOR R", 
+            "BODY MOULDING RX300 2016 DOOR L", "BODY MOULDING RX300 2020 DOOR R", "BODY MOULDING RX300 2020 DOOR L", 
+            "SUN VISOR HARRIER 2014 R", "SUN VISOR HARRIER 2014 L", "SUN VISOR PRADO 150 R", "SUN VISOR PRADO 150 L", 
+            "SUN VISOR XTRAIL T32 R", "SUN VISOR XTRAIL T32 L", "SUN VISOR RAV4 2019 R", "SUN VISOR RAV4 2019 L", 
+            "SUN VISOR CX5 2013 R", "SUN VISOR CX5 2013 L", "SUN VISOR CX5 2018 R", "SUN VISOR CX5 2018 L", 
+            "SUN VISOR ATENZA 2014 R", "SUN VISOR ATENZA 2014 L", "SUN VISOR FIT GK3 R", "SUN VISOR FIT GK3 L", 
+            "SUN VISOR VITZ 2014 R", "SUN VISOR VITZ 2014 L", "SUN VISOR AXELLA 2014 R", "SUN VISOR AXELLA 2014 L", 
+            "SUN VISOR CHR R", "SUN VISOR CHR L", "SUN VISOR NOTE E12 R", "SUN VISOR NOTE E12 L", "SUN VISOR PROBOX 2015 R", 
+            "SUN VISOR PROBOX 2015 L", "SUN VISOR FIELDER 165 R", "SUN VISOR FIELDER 165 L", "SUN VISOR OUTLANDER 2014 R", 
+            "SUN VISOR OUTLANDER 2014 L", "SUN VISOR CROWN 210 R", "SUN VISOR CROWN 210 L", "SUN VISOR RX300 2016 R", 
+            "SUN VISOR RX300 2016 L", "SUN VISOR MAZDA 3 2020 R", "SUN VISOR MAZDA 3 2020 L", "AIR VENT HARRIER 2014 CENTER", 
+            "AIR VENT HARRIER 2014 SIDE R", "AIR VENT HARRIER 2014 SIDE L", "AIR VENT PRADO 150 CENTER", "AIR VENT PRADO 150 SIDE R", 
+            "AIR VENT PRADO 150 SIDE L", "AIR VENT XTRAIL T32 CENTER", "AIR VENT XTRAIL T32 SIDE R", "AIR VENT XTRAIL T32 SIDE L", 
+            "AIR VENT RAV4 2019 CENTER", "AIR VENT RAV4 2019 SIDE R", "AIR VENT RAV4 2019 SIDE L", "AIR VENT CX5 2013 CENTER", 
+            "AIR VENT CX5 2013 SIDE R", "AIR VENT CX5 2013 SIDE L", "AIR VENT CX5 2018 CENTER", "AIR VENT CX5 2018 SIDE R", 
+            "AIR VENT CX5 2018 SIDE L", "AIR VENT ATENZA 2014 CENTER", "AIR VENT ATENZA 2014 SIDE R", "AIR VENT ATENZA 2014 SIDE L", 
+            "AIR VENT FIT GK3 CENTER", "AIR VENT FIT GK3 SIDE R", "AIR VENT FIT GK3 SIDE L", "AIR VENT VITZ 2014 SIDE R", 
+            "AIR VENT VITZ 2014 SIDE L", "AIR VENT AXELLA 2014 CENTER", "AIR VENT AXELLA 2014 SIDE R", "AIR VENT AXELLA 2014 SIDE L", 
+            "AIR VENT CHR CENTER", "AIR VENT CHR SIDE R", "AIR VENT CHR SIDE L", "AIR VENT NOTE E12 SIDE R", "AIR VENT NOTE E12 SIDE L", 
+            "AIR VENT FIELDER 165 SIDE R", "AIR VENT FIELDER 165 SIDE L", "AIR VENT OUTLANDER 2014 CENTER", "AIR VENT OUTLANDER 2014 SIDE R", 
+            "AIR VENT OUTLANDER 2014 SIDE L", "AIR VENT CROWN 210 CENTER", "AIR VENT CROWN 210 SIDE R", "AIR VENT CROWN 210 SIDE L", 
+            "AIR VENT RX300 2016 CENTER", "AIR VENT RX300 2016 SIDE R", "AIR VENT RX300 2016 SIDE L", "AIR VENT MAZDA 3 2020 CENTER", 
+            "AIR VENT MAZDA 3 2020 SIDE R", "AIR VENT MAZDA 3 2020 SIDE L", "RADIATOR PANEL HARRIER 2014", "RADIATOR PANEL PRADO 150", 
+            "RADIATOR PANEL XTRAIL T32", "RADIATOR PANEL RAV4 2019", "RADIATOR PANEL CX5 2013", "RADIATOR PANEL CX5 2018", 
+            "RADIATOR PANEL FIT GK3", "RADIATOR PANEL VITZ 2014", "RADIATOR PANEL CHR", "RADIATOR PANEL NOTE E12", "RADIATOR PANEL PROBOX 2015", 
+            "RADIATOR PANEL FIELDER 165", "RADIATOR PANEL OUTLANDER 2014", "TOWING COVER HARRIER 2014 FRONT", "TOWING COVER HARRIER 2014 REAR R", 
+            "TOWING COVER HARRIER 2014 REAR L", "TOWING COVER HARRIER 2018 FRONT", "TOWING COVER HARRIER 2018 REAR R", 
+            "TOWING COVER HARRIER 2018 REAR L", "TOWING COVER HARRIER 2020 FRONT", "TOWING COVER HARRIER 2020 REAR R", 
+            "TOWING COVER HARRIER 2020 REAR L", "TOWING COVER PRADO 150 2010 FRONT", "TOWING COVER PRADO 150 2014 FRONT", 
+            "TOWING COVER PRADO 150 2018 FRONT", "TOWING COVER PRADO 150 REAR", "TOWING COVER XTRAIL T32 2014 FRONT", 
+            "TOWING COVER XTRAIL T32 2014 REAR", "TOWING COVER XTRAIL T32 2018 FRONT", "TOWING COVER XTRAIL T32 2018 REAR", 
+            "TOWING COVER RAV4 2019 FRONT", "TOWING COVER RAV4 2019 REAR R", "TOWING COVER RAV4 2019 REAR L", "TOWING COVER VANGUARD FRONT", 
+            "TOWING COVER VANGUARD REAR", "TOWING COVER CX5 2013 FRONT", "TOWING COVER CX5 2013 REAR", "TOWING COVER CX5 2018 FRONT", 
+            "TOWING COVER CX5 2018 REAR", "TOWING COVER ATENZA 2014 FRONT", "TOWING COVER ATENZA 2014 REAR", "TOWING COVER ATENZA 2018 FRONT", 
+            "TOWING COVER ATENZA 2018 REAR", "TOWING COVER DEMIO DJ FRONT", "TOWING COVER DEMIO DJ REAR", "TOWING COVER FORESTER S13 FRONT", 
+            "TOWING COVER FORESTER S13 REAR", "TOWING COVER SUBARU XV 2014 FRONT", "TOWING COVER SUBARU XV 2014 REAR", 
+            "TOWING COVER FIT GK3 FRONT", "TOWING COVER FIT GK3 REAR", "TOWING COVER FIT GR1 FRONT", "TOWING COVER PASSO 2016 FRONT", 
+            "TOWING COVER VITZ 2014 FRONT", "TOWING COVER VITZ 2014 REAR", "TOWING COVER VITZ 2017 FRONT", "TOWING COVER VITZ 2017 REAR", 
+            "TOWING COVER AXELLA 2014 FRONT", "TOWING COVER AXELLA 2014 REAR", "TOWING COVER SIENTA 2016 FRONT", "TOWING COVER SIENTA 2016 REAR", 
+            "TOWING COVER CHR FRONT", "TOWING COVER CHR REAR R", "TOWING COVER CHR REAR L", "TOWING COVER NOTE E12 2014 FRONT", 
+            "TOWING COVER NOTE E12 2014 REAR", "TOWING COVER NOTE E12 2017 FRONT", "TOWING COVER NOTE E12 2017 REAR", 
+            "TOWING COVER NOTE E13 FRONT", "TOWING COVER PROBOX 2015 FRONT", "TOWING COVER PROBOX 2015 REAR", "TOWING COVER FIELDER 165 FRONT", 
+            "TOWING COVER FIELDER 165 REAR", "TOWING COVER SHUTTLE 2015 FRONT", "TOWING COVER SHUTTLE 2015 REAR", "TOWING COVER OUTLANDER 2014 FRONT", 
+            "TOWING COVER OUTLANDER 2014 REAR", "TOWING COVER CROWN 210 FRONT", "TOWING COVER CROWN 210 REAR", "TOWING COVER RVR 2012 FRONT", 
+            "TOWING COVER RVR 2012 REAR", "TOWING COVER MIRAGE 2014 FRONT", "TOWING COVER MIRAGE 2014 REAR", "TOWING COVER MIRAGE 2020 FRONT", 
+            "TOWING COVER MIRAGE 2020 REAR", "TOWING COVER AUDI Q5 2010 FRONT", "TOWING COVER AUDI Q5 2010 REAR", "TOWING COVER AUDI Q5 2014 FRONT", 
+            "TOWING COVER AUDI Q5 2014 REAR", "TOWING COVER NX300 FRONT", "TOWING COVER NX300 REAR", "TOWING COVER RX300 2016 FRONT", 
+            "TOWING COVER RX300 2016 REAR", "TOWING COVER RX300 2020 FRONT", "TOWING COVER RX300 2020 REAR", "TOWING COVER MAZDA 3 2020 FRONT", 
+            "TOWING COVER MAZDA 3 2020 REAR", "AIR CLEANER HOUSING HARRIER 2014", "AIR CLEANER HOUSING XTRAIL T32", "AIR CLEANER HOUSING RAV4 2019", 
+            "AIR CLEANER HOUSING CX5 2013 GASOLINE", "AIR CLEANER HOUSING CX5 2013 DIESEL", "AIR CLEANER HOUSING CX5 2018 GASOLINE", 
+            "AIR CLEANER HOUSING CX5 2018 DIESEL", "AIR CLEANER HOUSING FIT GK3", "AIR CLEANER HOUSING VITZ 2014", "AIR CLEANER HOUSING CHR", 
+            "AIR CLEANER HOUSING NOTE E12 DIGS", "AIR CLEANER HOUSING NOTE E12 ORDINARY", "AIR CLEANER HOUSING PROBOX 2015", 
+            "AIR CLEANER HOUSING FIELDER 165", "AIR BAG SPRING HARRIER 2014 TYPE", "AIR BAG SPRING PRADO 150 TYPE", "AIR BAG SPRING XTRAIL T32 TYPE", 
+            "AIR BAG SPRING RAV4 2019 TYPE", "AIR BAG SPRING VANGUARD TYPE", "AIR BAG SPRING CX5 2013 TYPE", "AIR BAG SPRING CX5 2018 TYPE", 
+            "AIR BAG SPRING FIT GK3 TYPE", "AIR BAG SPRING VITZ 2014 TYPE", "AIR BAG SPRING CHR TYPE", "AIR BAG SPRING NOTE E12 TYPE", 
+            "AIR BAG SPRING PROBOX 2015 TYPE", "AIR BAG SPRING FIELDER 165 TYPE", "WING CX3 RH", "WING CX3 LH", "MUFFLER HONDA", 
+            "BUMPER CHROME CX3 R", "BUMPER CHROME CX3 L", "BUMPERSLIDE CX3 R", "BUMPERSLIDE CX3 L", "LOWER MOULDING CX5 R", 
+            "LOWER MOULDING CX5  L", "STONEGUARD DEMIO R", "STONEGUARD DEMIO L", "BONNET AXELLA 2020", "BONNET CX3 2018", 
+            "BONNET CHROME PREMIO 265", "STONEGUARD CX3 R", "STONEGUARD CX3 L", "BOOT LAMP CX5 15 LED R", "BOOT LAMP CX5 15 LED L", 
+            "NECK RUMION", "GRILLE MAZDA CX3", "BOOTSHOCK SUBARU TRIBECA", "REFLECTOR ATENZA R", "REFLECTOR ATENZA L", "FOG COVER RVR 2012 R", 
+            "FOG COVER RVR 2012 L", "GRILLE AXELLA 2018 JAPAN", "GRILLE MESH ATENZA 2020", "GRILLE CX5 2018 SPORTS", "GRILLE CX8", 
+            "BUMPER MOULDING AXELLA 2020 BLACK RH", "BUMPER MOULDING AXELLA 2020 BLACK LH", "BUMPER CX3 SHELL", "CONSOLE PREMIO/ALLION 240", 
+            "GRILLE BRACKET CX5 2012", "GRILLE BRACKET CX5 2016", "GRILLE BRACKET CX5 2018", "GRILLE BRACKET ATENZA 2014", "GRILLE BRACKET ATENZA 2018"
+        ];
+
+        // Normalizes descriptions, drops directions (LH, RH, R, L, etc.), and ensures exact uniqueness
+        function sanitizeAndCategorize() {
+            const cleanSet = new Set();
+            
+            rawDatabase.forEach(item => {
+                // Regular Expression patterns targeting left/right direction keys as whole words or components
+                let cleaned = item.replace(/\s*\b(LH|RH|L|R|Left|Right|FL|FR|RL|RR|INSIDE|OUTSIDE|CENTER|SIDE)\b\s*/gi, ' ');
+                // Compact double white spaces and pull edges clean
+                cleaned = cleaned.replace(/\s+/g, ' ').trim();
+                
+                if (cleaned && cleaned !== "NAME") {
+                    cleanSet.add(cleaned);
+                }
+            });
+
+            const uniqueProducts = Array.from(cleanSet);
+            
+            // Layout classification arrays matching parts into operational tabs
+            const catalogMap = {
+                sidemirror: [], lights: [], fog: [], frontbody: [], bodytrim: [],
+                shocks: [], interior: [], internaltrim: [], engine: [], misc: []
+            };
+
+            uniqueProducts.forEach(item => {
+                const lower = item.toLowerCase();
+                if (lower.includes('mirror') || lower.includes('wing cx3')) {
+                    catalogMap.sidemirror.push(item);
+                } else if (lower.includes('lamp') || lower.includes('light') || lower.includes('ballast') || lower.includes('bulb') || lower.includes('projector')) {
+                    catalogMap.lights.push(item);
+                } else if (lower.includes('fog') || lower.includes('slide') || lower.includes('bracket')) {
+                    catalogMap.fog.push(item);
+                } else if (lower.includes('bumper') || lower.includes('grille') || lower.includes('bonnet') || lower.includes('fender')) {
+                    catalogMap.frontbody.push(item);
+                } else if (lower.includes('windbreaker') || lower.includes('finisher') || lower.includes('moulding') || lower.includes('weatherstrip') || lower.includes('mudflap') || lower.includes('stoneguard')) {
+                    catalogMap.bodytrim.push(item);
+                } else if (lower.includes('shock') || lower.includes('handle') || lower.includes('logo') || lower.includes('aerial') || lower.includes('bootshock')) {
+                    catalogMap.shocks.push(item);
+                } else if (lower.includes('visor') || lower.includes('wheelcap') || lower.includes('vent') || lower.includes('water jet') || lower.includes('visor')) {
+                    catalogMap.interior.push(item);
+                } else if (lower.includes('switch') || lower.includes('cover premio') || lower.includes('cover allion') || lower.includes('housing') || lower.includes('cleaner') || lower.includes('console')) {
+                    catalogMap.internaltrim.push(item);
+                } else if (lower.includes('muffler') || lower.includes('radiator') || lower.includes('tow') || lower.includes('neck')) {
+                    catalogMap.engine.push(item);
+                } else {
+                    catalogMap.misc.push(item);
+                }
+            });
+
+            return catalogMap;
+        }
+
+        // Programmatically draws catalog list columns and injects statistics natively
+        function renderInventoryGrid() {
+            const inventory = sanitizeAndCategorize();
+            let totalItemCounter = 0;
+
+            Object.keys(inventory).forEach(catKey => {
+                const container = document.querySelector(`.card-container[data-category="${catKey}"]`);
+                if (!container) return;
+
+                const list = inventory[catKey];
+                totalItemCounter += list.length;
+
+                // Update category segment total counters
+                const parentSection = container.closest('section');
+                if (parentSection) {
+                    const counterBadge = parentSection.querySelector('.count-badge');
+                    if (counterBadge) counterBadge.innerText = `${list.length} Items Listed`;
+                }
+
+                container.innerHTML = list.map(productName => `
+                    <div class="product-card bg-white rounded-xl border border-gray-100 p-3 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="bg-gray-100 rounded-lg aspect-square mb-2 flex items-center justify-center text-gray-300 text-3xl relative overflow-hidden group">
+                                <i class="fa-solid fa-car-side"></i>
+                                <span class="absolute bottom-1 right-1 text-[9px] bg-slate-800 text-white px-1 rounded opacity-50">OEM Stock</span>
+                            </div>
+                            <h3 class="font-medium text-gray-800 text-xs sm:text-sm tracking-tight leading-snug">${productName}</h3>
+                        </div>
+                        <button onclick="toggleInquiry('${productName.replace(/'/g, "\\'")}', this)" class="mt-3 w-full py-1.5 px-2 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-xs font-medium transition-colors flex items-center justify-center space-x-1 border border-gray-200 hover:border-red-200">
+                            <i class="fa-solid fa-plus text-[10px]"></i> <span>Add to Quote</span>
+                        </button>
+                    </div>
+                `).join('');
+            });
+
+            document.getElementById('globalCount').innerText = `${totalItemCounter} Items Total`;
+        }
+
+        // Live Real-Time Filtering Engine
+        function searchCatalog() {
+            const query = document.getElementById('catalogSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
+            const sections = document.querySelectorAll('#catalogContent section');
+
+            cards.forEach(card => {
+                const text = card.querySelector('h3').innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            sections.forEach(section => {
+                const visibleCards = section.querySelectorAll('.product-card[style="display: flex;"]');
+                const totalCards = section.querySelectorAll('.product-card');
+                if (query !== "" && visibleCards.length === 0 && totalCards.length > 0) {
+                    section.style.display = 'none';
+                } else {
+                    section.style.display = 'block';
+                }
+            });
+        }
+
+        // State machine handling quote operations
+        let cartItemsSet = new Set();
+        function toggleInquiry(itemName, button) {
+            if (cartItemsSet.has(itemName)) {
+                cartItemsSet.delete(itemName);
+                button.innerHTML = '<i class="fa-solid fa-plus text-[10px]"></i> <span>Add to Quote</span>';
+                button.className = button.className.replace('bg-red-600 text-white border-red-600 hover:bg-red-700', 'bg-slate-50 text-slate-700 border-gray-200 hover:bg-red-50 hover:text-red-600');
+            } else {
+                cartItemsSet.add(itemName);
+                button.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i> <span>Added</span>';
+                button.className = button.className.replace('bg-slate-50 text-slate-700 border-gray-200 hover:bg-red-50 hover:text-red-600', 'bg-red-600 text-white border-red-600 hover:bg-red-700');
+            }
+            refreshInquiryCartUI();
+        }
+
+        function refreshInquiryCartUI() {
+            const statusDiv = document.getElementById('cartStatus');
+            if (cartItemsSet.size === 0) {
+                statusDiv.innerHTML = 'No items selected. Click parts to build a quotation list.';
+                return;
+            }
+            let listHtml = '<ul class="space-y-1 mb-3 max-h-40 overflow-y-auto font-medium text-[11px] text-gray-700">';
+            cartItemsSet.forEach(item => {
+                listHtml += `<li class="truncate flex items-center"><i class="fa-solid fa-circle text-red-500 text-[6px] mr-1.5"></i>${item}</li>`;
+            });
+            listHtml += '</ul>';
+            listHtml += `<button onclick="alert('Inquiry list generated successfully for ${cartItemsSet.size} components!')" class="w-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold py-2 rounded-lg transition-colors shadow">Request Quote (${cartItemsSet.size})</button>`;
+            statusDiv.innerHTML = listHtml;
+        }
+
+        // Active state structural highlighters linked to layout scrolling offsets
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('#catalogContent section');
+            const navLinks = document.querySelectorAll('#sidebarNav a');
+            let currentActive = "";
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    currentActive = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.className = "flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50";
+                if (link.getAttribute('href') === `#${currentActive}`) {
+                    link.className = "flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium bg-red-50 text-red-700 font-semibold";
+                }
+            });
+        });
+
+        // Initialize application matrix layout rendering instantly on page ready
+        window.onload = renderInventoryGrid;
+    </script>
+</body>
+</html>
